@@ -1,0 +1,30 @@
+int sensoranalogpin=A0;
+int sensordigitalpin=2;
+
+int relaypin = 7;
+
+void setup(){
+  // pinMode(ledPin, OUTPUT);
+  pinMode(sensoranalogpin, INPUT);
+  pinMode(relaypin, OUTPUT);
+  Serial.begin (9600);
+}
+
+void loop (){
+  int analogvalue =analogRead(sensoranalogpin);
+  Serial.println (analogvalue);
+  delay(200);
+  
+  // when the sensor detects a signal above the threshold value, LED flashes
+  if (analogvalue>50) {
+    digitalWrite(relaypin, LOW);
+    Serial.println("value is > 40");
+ 
+  }
+  else {
+
+    digitalWrite(relaypin, HIGH);
+
+  }
+
+}
