@@ -1,7 +1,7 @@
 // This program blinks an LED on pin 13 every second.
 #include <L298N.h>
 
-L298N motor1(3,4,5);//3 no pin for enB; pin 4 for in4; pin 3 for in3;
+L298N motor1(3,4,5);//3 no pin for enB; pin 4 for in4; pin 5 for in3;
 L298N motor2(10,9,8);//10 no pin for enA; pin 9 for in1; pin 8 for in2;
 
 void setup() {
