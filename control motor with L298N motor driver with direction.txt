@@ -11,7 +11,7 @@ void setup() {
 
 void loop() {
   
-  motor1.setSpeed(100);
+  motor1.setSpeed(250);//maximum speed is 255 of motor;
   motor1.forward();
   delay(200);
   motor1.stop();
@@ -22,7 +22,7 @@ void loop() {
   delay(100);
 
   //for motor 2;
-  motor2.setSpeed(100);
+  motor2.setSpeed(250);
   motor2.forward();
   delay(200);
   motor2.stop();
