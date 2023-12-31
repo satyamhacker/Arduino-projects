@@ -1,0 +1,105 @@
+// This program blinks an LED on pin 13 every second.
+#include <L298N.h>
+#include <IRremote.h>
+
+L298N motor1(3,A0,A1);//3 no pin for enB; pin 4 for in4; pin 5 for in3;//only EnA, EnB has pwn pins;
+L298N motor2(5,A4,A5);//10 no pin for enA; pin 9 for in1; pin 8 for in2;
+
+#define IR_RECEIVE_PIN 2
+//for second set of motor 
+L298N motor3(11,12,13);
+L298N motor4(10,9,8);
+
+void setup() {
+    Serial.begin(9600);
+    IrReceiver.begin(IR_RECEIVE_PIN);
+  
+}
+
+void loop() {
+
+   if (IrReceiver.decode()) {
+    IrReceiver.resume();
+    int input_from_remote = IrReceiver.decodedIRData.command;
+    Serial.println(input_from_remote);
+   
+
+   if(input_from_remote==14)
+   {
+      motor1.setSpeed(255);//maximum speed is 255 of motor;
+      motor1.forward();
+
+      motor2.setSpeed(255);
+      motor2.forward();
+
+      motor3.setSpeed(255);
+      motor3.forward();
+
+      motor4.setSpeed(255);
+      motor4.forward();
+
+
+   }
+
+    else if(input_from_remote==26)
+   {
+      motor1.setSpeed(255);//maximum speed is 255 of motor;
+      motor1.backward();
+
+      motor2.setSpeed(255);
+      motor2.backward();
+
+      motor3.setSpeed(255);
+      motor3.backward();
+
+      motor4.setSpeed(255);
+      motor4.backward();
+
+
+    }
+
+     else if(input_from_remote==10)
+   {
+      motor1.setSpeed(255);//maximum speed is 255 of motor;
+      motor1.backward();
+
+      motor2.setSpeed(255);
+      motor2.backward();
+
+      motor3.setSpeed(255);
+      motor3.forward();
+
+      motor4.setSpeed(255);
+      motor4.forward();
+
+
+    }
+
+     else if(input_from_remote==30)
+   {
+      motor1.setSpeed(255);//maximum speed is 255 of motor;
+      motor1.forward();
+
+      motor2.setSpeed(255);
+      motor2.forward();
+
+      motor3.setSpeed(255);
+      motor3.backward();
+
+      motor4.setSpeed(255);
+      motor4.backward();
+
+
+    }
+    else {
+      motor1.stop();
+      motor2.stop();
+      motor3.stop();
+      motor4.stop();
+    
+    }
+ 
+ 
+   }
+
+}
